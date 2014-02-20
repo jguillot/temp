@@ -1,0 +1,35 @@
+<div class='user list' ng-show='isloaded'>
+	<header class='header'>
+		<div class='row  no-print'>
+                    <div class='col-lg-1'>
+                            <button ng-click='gotoNewUser()' type="button" class="pull-left btn btn-primary">Nouveau commercial</button>
+                    </div>
+		</div>
+                <div class="only-print">
+                    <h4 class="text-center col-lg-12">Opale Monaco : Liste des commerciaux</h4>
+                </div>
+	</header>
+	<hr class='sep'>
+	<div>
+		<div id="list-users" class='tlist' infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+			<header>
+				<div class='col name'>Commercial</div>
+				<div class='col num'>Clients</div>
+				<div class='col num'>Prospects</div>
+				<div class='col actif'>Actif</div>
+			</header>
+			<table class="table table-hover">
+				<tr ng-repeat="user in users" ng-click='gotoUser(user._id)' class="opale-clickable-row">
+					<td class='col name'>{{user.firstname}} {{user.lastname}} </td>
+					<td class='col num' ng-show='user.numClients'>{{user.numClients}}</td>
+					<td class='col num' ng-show='!user.numClients'>&nbsp;</td>
+					<td class='col num' ng-show='user.numProspects'>{{user.numProspects}}</td>
+					<td class='col num' ng-show='!user.numProspects'>&nbsp;</td>
+					<td class='col actif' ng-show='user.active'>Oui</td>
+					<td class='col actif' ng-show='user.active == false'>Non</td>
+				</tr>
+			</table>
+			<h3 ng-show='users.length == 0'>Vous n'avez pas de commerciaux pour le moment</h3>
+		</div>
+	</div>
+</div>

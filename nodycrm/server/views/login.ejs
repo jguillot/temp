@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="nodycrm">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Opale / CRM login</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link rel='stylesheet' href='/css/bootstrap-glyphicons.css' />
+  <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body ng-init="init()">
+ 
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><img src="/img/logo-gris.png" style="width:125px;"></a>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <form method='post' action='/login' class="form-signin">
+      <h2 class="form-signin-heading">Login</h2>
+      <%if (error.length > 0) { %>
+      <div class="alert alert-danger">
+        <%= error %>
+      </div>
+      <% } %>
+      <input type="text" class="form-control" placeholder="Email" autofocus="" name='email'>
+      <br>
+      <input type="password" class="form-control" placeholder="Mot de passe" name='password'>
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    </form>
+  </div>    
+
+  <!-- js -->
+  <script src="/js/jquery-1.9.1.js"></script>
+</script> <script src="/js/bootstrap.min.js"></script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/angular-resource.js"></script>
+<script src="/app/controllers/controllers.js"></script>
+
+</body>
+</html>

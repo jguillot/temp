@@ -1,0 +1,15 @@
+.btn {
+    display:none;
+}
+
+.no-print {
+    display:none;
+}
+
+.only-print {
+    display:inline;
+}
+
+.no-page-break {
+    page-break-inside: avoid;
+}

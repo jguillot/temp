@@ -1,0 +1,149 @@
+<div class='client detail'>
+  <div class="panel">
+    <div class="row">
+      <div class="col-lg-10 col-md-8 col-sd-8 opale-title">{{client.name}} ({{client.stage}})<span ng-show='!client.active' class="text-danger"> / Archivé</span> </div>
+      <div class="col-lg-2  col-md-4 col-sd-4 pull-right"><button ng-click='gotoEdit()' type="button" class="pull-right btn btn-primary btn-opale">Modifier</button></div>
+
+    </div>
+    <br>
+    <div class="row">   
+      <div class="col-lg-6 col-md-6 opale-title text-left">
+        <span ng-show='client.activity'>{{client.activity}}</span>
+        <span ng-show='!client.activity'>Non specifiée</span>
+      </div>
+      <div class="col-lg-6 col-md-6 opale-title text-right">
+        <div style='margin:19px 0 0 0' ng-show="client._user._id" class="pull-right">
+          <button ng-click='gotoUser(client._user._id)' ng-show="current_user.admin" type="button" class="btn btn-primary btn-opale pull-right">
+            Fiche
+          </button>
+          <div style='margin:6px 6px 0 0' class='pull-right'>Commercial : {{client._user.firstname}} {{client._user.lastname}}</div>
+        </div>
+        <div ng-show="!client._user._id" class="pull-right">Aucun Commercial</div>
+      </div>
+    </div>
+  </div>
+    
+  
+<div class="row">
+    <div class="col-lg-4 col-mg-12 col-sm-12 col-xs-12">
+      <div class="panel">
+        <p class="opale-big-text">Informations</p>   
+        <p class="opale-text"><span class="opale-lib">Fiche créé le : </span>{{client.created_date | date:'dd/MM/yyyy'}}</p>
+        <p class="opale-text"><span class="opale-lib">Fiche modifiée le : </span>{{(client.update_date | date:'dd/MM/yyyy') || 'Jamais'}}</p>      
+        <p class="opale-text"><span class="opale-lib">Echantillons expédiés le : </span>{{client.product_send_date | date:'dd/MM/yyyy' || 'Jamais'}}</p>
+        <p class="opale-text"><span class="opale-lib">Autres marques :  
+        <span ng-repeat='trademark in client.other_trademarks'>
+          <span ng-show='$index > 0' class="opale-text">, </span>
+          <span class="opale-text">{{trademark}}</span>
+        </span>
+        <span ng-show='!client.other_trademarks || client.other_trademarks.length == 0' class="opale-text">Aucune</span>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-mg-6 col-sm-6 col-xs-6">
+      <div class="panel">
+        <p class="opale-big-text">Adresse</p>
+        <p class="opale-text">
+         {{client.address.address_line1}}<br/>
+         {{client.address.address_line2}}<br/>
+         {{client.address.postal_code}} {{client.address.city}} {{client.address.country}}<br/>
+         Tel : {{client.address.phone}}<br/>
+         Mobile : {{client.address.mobile}}<br/>
+         Fax : {{client.address.fax}}<br/>
+         Email : {{client.address.email}}<br/>
+         Site : {{client.address.site}}<br/>
+         SIRET : {{client.siret}}</p>
+      </div>
+   </div>
+
+    <div class="col-lg-4 col-mg-6 col-sm-6 col-xs-6">
+      <div class="panel">
+        <p class="opale-big-text">Adresse de livraison</p>
+        <p class="opale-text">
+         {{client.delivery_address.address_line1}}<br/>
+         {{client.delivery_address.address_line2}}<br/>
+         {{client.delivery_address.postal_code}} {{client.delivery_address.city}} {{client.delivery_address.country}}<br/>
+         Tel : {{client.delivery_address.phone}}<br/>
+         Mobile : {{client.delivery_address.mobile}}<br/>
+         Fax : {{client.delivery_address.fax}}<br/>
+         Email : {{client.delivery_address.email}}<br/>
+         &nbsp;</p>
+     </div>
+    </div>
+
+ </div>
+
+ <div class="row">
+    <div class="col-sm-4 col-xs-6">
+        <div class="panel">  
+            <p class="opale-big-text">Informations sur les échantillons</p>
+            <p ng-bind-html="client.product_send_note" class="opale-text"></p>
+        </div>
+    </div>  
+    <div class="col-sm-8 col-xs-6">
+        <div class="panel">  
+            <p class="opale-big-text">Notes</p>
+            <p ng-bind-html="client.description" class="opale-text"></p>
+        </div>
+    </div>
+ </div>
+
+ <div class="row">
+  <div class="col-lg-4 col-sm-12 col-xs-12 text-left opale-text">
+    <div class='panel no-page-break'>
+     <p class="opale-big-text">1er contact</p>
+     <p>Nom : {{client.contacts[0].title}} {{client.contacts[0].firstname}} {{client.contacts[0].name}} <em>{{client.contacts[0].position}}</em></p>
+     <p>Tel : {{client.contacts[0].phone}}</p>
+     <p>Mobile : {{client.contacts[0].mobile}}</p>
+     <p>Fax : {{client.contacts[0].fax}}</p>
+     <p>Email : {{client.contacts[0].email}}</p>
+   </div>
+ </div>
+
+ <div class="col-lg-4 col-sm-12 col-xs-12 text-left opale-text">
+  <div class='panel no-page-break'>
+   <p class="opale-big-text">2eme Contact</p>
+   <p>Nom : {{client.contacts[1].title}} {{client.contacts[1].firstname}} {{client.contacts[1].name}} <em>{{client.contacts[1].position}}</em></p>
+   <p>Tel : {{client.contacts[1].phone}}</p>
+   <p>Mobile : {{client.contacts[1].mobile}}</p>
+   <p>Fax : {{client.contacts[1].fax}}</p>
+   <p>Email : {{client.contacts[1].email}}</p>
+ </div>
+</div>
+<div class="col-lg-4 col-sm-12 col-xs-12 text-left opale-text">
+  <div class='panel no-page-break'>
+   <p class="opale-big-text">3eme contact</p>
+   <p>Nom : {{client.contacts[2].title}} {{client.contacts[2].firstname}} {{client.contacts[2].name}} <em>{{client.contacts[2].position}}</em></p>
+   <p>Tel : {{client.contacts[2].phone}}</p>
+   <p>Mobile : {{client.contacts[2].mobile}}</p>
+   <p>Fax : {{client.contacts[2].fax}}</p>
+   <p>Email : {{client.contacts[2].email}}</p>
+ </div>
+</div>
+</div>
+
+<div class='panel'>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="date_and_initial">Date</th>
+          <th class="opale-big-text">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="no-print">
+          <td class="opale-text">{{currentDateTime | date:'dd/MM/yyyy'}} ({{current_user.initial}})</td>
+          <td class="opale-text"><input new-action onsave='createAction()' model='newAction' type="text" class="form-control opale-text" id="newAction_comment" placeholder="Action"></td>
+        </tr>	
+        <tr ng-repeat='action in client.actions | orderBy: "-actionDate"'>
+          <td  class="opale-text">{{action.actionDate | date:'dd/MM/yyyy'}} ({{action._user_initial}})</td>
+          <td class="opale-text" editable-action action='action' ondone='saveaction(id)'></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>

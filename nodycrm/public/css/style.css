@@ -1,0 +1,214 @@
+input.ng-invalid  {
+    border-color: red;
+}
+.navbar {
+    background-color: #F0F0F0;
+    min-height: 40px;
+}
+.navbar .nav, .navbar .nav > li {
+    float:none;
+    display:inline-block;
+    vertical-align: top;
+}
+.navbar-inner {
+    text-align:center;
+}
+#logout {margin-top: 7px;}
+a.navbar-brand {
+    background-color: #F0F0F0;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.navbar-form {
+    margin-top: 0;
+}
+.opale-clickable-row {
+    cursor:pointer;
+}
+.opale-simple-data-title {
+    font: 12px "Arial", Helvetica, Arial, sans-serif;
+    margin: 3px;
+    padding: 0px;
+    font-weight: bold;
+}
+.opale-simple-data {
+    font: 12px "Arial", Helvetica, Arial, sans-serif;
+    margin: 3px;
+    padding: 0px;
+}
+.opale-row-low-margin {
+    margin:0px;
+    padding:0px;
+}
+.panel .panel-heading {
+    background-color: #f0f0f0;
+    color: #505050;
+    border-color: #909090;
+    text-align: center;
+}
+.panel-info {
+   background-color: #f0f0f0;    
+}
+.panel {
+    border-color: #c8c8c8;
+    color: #909090;
+    background-color: #ffffff;
+}
+.panel-body {
+    padding: 15px;
+    margin: 15px;
+}
+.opale-title {
+    font: 18px "Arial", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+}
+.opale-subtitle {
+    font: 14px "Arial", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+}
+.opale-lib {
+    font: 12px "Arial", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+}
+.opale-text {
+    font: 12px "Arial", Helvetica, Arial, sans-serif;
+}
+.opale-big-text {
+    font: 14px "Arial", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+}
+#client_name {
+    display:inline;
+}
+.client.detail .panel {
+    padding: 15px;
+}
+.client.edit .panel {
+    padding: 15px;
+}
+.opale-alert {
+    color: #ff0000;
+}
+.user .panel {
+    padding: 15px;
+}
+.body {
+  font: 11px "Arial", Helvetica, Arial, sans-serif;
+}
+a {color: #00B7FF; }
+.padded {padding: 15px; }
+.sep {margin: 10px 0 10px 0; }
+form.form-header {margin: 10px 0 0 0; }
+header.header {margin: 5px 0 5px 0; }
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+.saveDetail button {margin-left: 6px; }
+form div.alert {
+	padding: 10px;
+	margin: 10px 0 10px 0;
+}
+.message-warning {color: #c09853; }
+a.back {
+	font: 14px "Arial", Helvetica, Arial, sans-serif; 
+}
+select {
+    height:30px;
+}
+input.c-field-sep {
+	margin-bottom: 6px;
+}
+.row.sep {margin-top: 20px;}
+.user.new .error.alert {
+	margin: 0;
+	padding: 7px;
+}
+.user.list .list-users td {
+    padding-top: 2px;
+    padding-bottom: 2px;    
+}
+.client header.header {margin-bottom: 24px;}
+.tlist header {
+    background: #ddd;
+    overflow: hidden;
+    padding: 2px 14px;
+    margin-bottom: 8px;
+}
+#list-clients header div {
+    float:left;
+    cursor: pointer;
+}
+#list-clients .search {
+    overflow: hidden;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+}
+#list-clients .search div {float:left; }
+#list-clients .search div input[type='text'] {width: 80%;}
+#list-clients .col.name {width: 20%;}
+#list-clients td.col.name {padding-left: 14px}
+#list-clients .col.commercial {width: 20%;}
+#list-clients .col.lastcontact {width: 30%;}
+#list-clients .col.lastcontact .from {margin:0 0 4px;}
+
+#list-clients .col.stage {width: 15%; margin:0 0 4px;}
+#list-clients .col.stage .stage{width: 15%; margin:0 0 4px;}
+
+
+#list-clients .col.location {width: 15%; margin:0 0 4px;}
+#list-clients .col.location .postalcode{width: 15%; margin:0 0 4px;}
+
+.sortflag {margin-left: 8px;}
+#list-clients th {
+    cursor: pointer;
+    padding:2px 8px;
+}
+#list-users header div {float:left; cursor: pointer; }
+#list-users .col.name {width: 50%;}
+#list-users .col.num {width: 20%;}
+#list-users .col.actif {width: 10%;}
+
+.border-right {
+    border-right: 1px solid #eee;
+}
+#list-clients .archive{
+    color:red;
+}
+.date_and_initial {
+    max-width:180px;
+    width:180px;
+    vertical-align: middle;
+}
+.btn-opale {
+    width:74px;
+}
+.table thead{
+    background: #ddd;
+}
+
+
+#user-modify-button {
+    margin-right:10px;
+}
+
+
+.img-user-avatar {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    margin:0px 15px 0px 15px;
+    border: 1px solid #ddd;
+    background-position: center center;
+    background-size: cover;
+}
+
+.has-switch.long  {min-width:130px;}
+
+.only-print {
+    display:none;
+}

@@ -1,0 +1,43 @@
+<div class='user edit' ng-show='isloaded'>
+	<div class='panel'>
+		<form name='editUserForm' class="form-horizontal form-header" role="form">
+			<div class="row">
+				<div class="col-md-4 col-xs-6 pull-left">
+					<input ng-model='user.firstname' type="text" class="form-control" id="inputPrenom" name='firstname' placeholder="Prenom" title="Prénom" required>
+				</div>
+				<div class="col-md-4 col-xs-6 pull-left">
+					<input ng-model='user.lastname' type="text" class="form-control" id="inputNom" name='lastname' placeholder="Nom" title="Nom" required>
+				</div>
+				<div ng-show='!user.admin'class="col-md-2 col-xs-4 text-left">
+				  <div switch data='user.active'></div>
+				</div>
+				<div class="col-md-2 col-xs-8 pull-right">
+					<button  ng-click='save()' ng-disabled="(!editUserForm.$valid)" type="button" class="btn btn-success pull-right">Sauver</button>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-4 text-center">
+					<input ng-model='user.email' type="email" class="form-control" id="inputEmail" name='email' placeholder="Email" required>
+				</div>
+				<div class="col-xs-4 text-center">
+					<input ng-model='user.password' type="text" class="form-control" id="inputPassword" name='password' placeholder="Mot de Passe" required>
+				</div>
+				<div class="col-xs-4 text-center">
+					<input ng-model='user.initial' maxlength="3" type="text" class="form-control" id="inputInitial" name='initial' placeholder="Initial" style="width:70px;" required>
+				</div>
+
+			</div>
+			<div class="row padded">
+				<div class="col-md-12 col-xs-12 pull-left">
+					<div ng-show="editUserForm.firstname.$error.required" class="col-lg-12 error alert alert-warning text-center">Prénom Requis</div>
+					<div ng-show="editUserForm.lastname.$error.required" class="col-lg-12 error alert alert-warning text-center">Nom Requis</div>
+					<div ng-show="editUserForm.email.$error.required" class="col-lg-12 error alert alert-warning text-center">Email Requis</div>
+					<div ng-show="editUserForm.email.$error.email" class="col-lg-12 error alert alert-warning text-center">Email invalide</div>
+					<div ng-show="editUserForm.initial.$error.required" class="col-lg-12 error alert alert-warning text-center">Initiales requises</div>
+					<div ng-show="editUserForm.password.$error.required" class="col-lg-12 error alert alert-warning text-center">Mot de passe requis</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

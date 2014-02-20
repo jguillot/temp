@@ -1,0 +1,59 @@
+<div class='user new container clearfix'>
+	<div class='row'>
+		<div class='col-lg-6 col-lg-offset-3'>
+			<form name='newUserForm' class="form-horizontal form-header" role="form">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Creer un commercial</h3>
+					</div>
+					<div class="panel-body padded">
+						<div class="form-group">
+							<label for="inputPrenom" class="col-lg-3 control-label">Prenom</label>
+							<div class="col-lg-6">
+								<input ng-model='user.firstname' type="text" class="form-control" id="inputPrenom" name='firstname' placeholder="Prenom" required>
+							</div>
+							<div ng-show="newUserForm.firstname.$error.required" class="col-lg-2 error alert alert-warning text-center">Requis</div>
+							<div ng-show="!newUserForm.firstname.$error.required" class="col-lg-2 error alert alert-success text-center">Valide</div>
+						</div>
+						<div class="form-group">
+							<label for="inputNom" class="col-lg-3 control-label">Nom</label>
+							<div class="col-lg-6">
+								<input ng-model='user.lastname' type="text" class="form-control" id="inputNom" name='lastname' placeholder="Nom" required>
+							</div>
+							<div ng-show="newUserForm.lastname.$error.required" class="col-lg-2 error alert alert-warning text-center">Requis</div>
+							<div ng-show="!newUserForm.lastname.$error.required" class="col-lg-2 error alert alert-success text-center">Valide</div>
+						</div>
+						<div class="form-group">
+							<label for="inputInitial" class="col-lg-3 control-label">Initial</label>
+							<div class="col-lg-3">
+								<input ng-model='user.initial' maxlength="3" type="text" class="form-control" id="inputInitial" name='initial' placeholder="Initial" required>
+							</div>
+							<div ng-show="newUserForm.initial.$error.required" class="col-lg-2 error alert alert-warning text-center">Requis</div>
+							<div ng-show="!newUserForm.initial.$error.required" class="col-lg-2 error alert alert-success text-center">Valide</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail" class="col-lg-3 control-label">Email</label>
+							<div class="col-lg-6">
+								<input ng-model='user.email' type="email" class="form-control" id="inputEmail" name='email' placeholder="Email" required>
+							</div>
+							<div ng-show="newUserForm.email.$error.required" class="col-lg-2 error alert alert-warning text-center">Requis</div>
+							<div ng-show="newUserForm.email.$error.email" class="col-lg-2 error alert alert-warning text-center">Invalide</div>
+							<div ng-show="!newUserForm.email.$error.email && !newUserForm.email.$error.required" class="col-lg-2 error alert alert-success text-center">Valide</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword" class="col-lg-3 control-label">Mot de Passe</label>
+							<div class="col-lg-6">
+								<input ng-model='user.password' type="text" class="form-control" id="inputPassword" name='password' placeholder="Mot de Passe" required>
+							</div>
+							<div ng-show="newUserForm.password.$error.required" class="col-lg-2 error alert alert-warning text-center">Requis</div>
+							<div ng-show="!newUserForm.password.$error.required" class="col-lg-2 error alert alert-success text-center">Valide</div>
+						</div>
+					</div>
+					<div class="panel-footer text-right">
+						<button ng-click='save()' type="button" class="btn btn-success" ng-disabled="!newUserForm.$valid">Creer</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

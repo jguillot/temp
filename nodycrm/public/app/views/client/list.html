@@ -1,0 +1,81 @@
+<div class='client list' ng-show='isloaded'>
+	<header class='header'>
+		<div class='row no-print'>
+            <div class="col-lg-1">
+                <button ng-click='gotoNewClient()' type="button" class="pull-left btn btn-primary">Nouveau client</button>
+            </div>
+            <div class='col-lg-1 pull-right'>
+				<button ng-click='gotoPrintClients(clients)' type="button" class="btn btn-default">Imprimer</button>
+			</div>
+		</div>
+	</header>
+	<div>
+		<div id="list-clients" class='tlist' infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+			<header class="no-print">
+				<div class='col name' ng-click="setOrder('name')"> Client <span sorting-flag order="order" col="name"></span></div>
+				<div class='col commercial' ng-click="setOrder('_user_name')">Commercial<span sorting-flag order="order" col="_user_name"></span></div>
+				<div class='col lastcontact' ng-click="setOrder('last_action_date')">Dernier contact<span sorting-flag order="order" col="last_action_date"></span></div>
+				<div class='col stage' ng-click="setOrder('stage')">Statut<span sorting-flag order="order" col="stage"></span></div>
+				<div class='col activity' ng-click="setOrder('activity')">Activité<span sorting-flag order="order" col="activity"></span></div>
+			</header>
+			<div class='panel search no-print'>
+				<div class='col name'>
+					<input ng-model='research.searchname' ng-change="search()" type='text' placeholder='Rechercher...'>
+					<input  type="checkbox" ng-model="research.searcharchive" ng-change="search()" title='Afficher les clients archivés' data-toggle="tooltip">
+				</div>
+				<div class='col commercial'>
+					<input style='width:80%' ng-model='research.searchuser' ng-change="search()" type='text' placeholder='Rechercher...'>
+					<input  type="checkbox" ng-model="research.searchnouser" ng-change="search()" title='Aucun Commercial' data-toggle="tooltip">
+				</div>
+				<div class='col lastcontact'>
+					<input class='from' type="text" ui-date ng-model="research.searchdatefrom" placeholder='Apres' ng-change="search()">
+					<input type="checkbox" ng-model="research.searchnoactions" ng-change="search()" title='Aucune Action' data-toggle="tooltip">
+					<input type="text" ui-date ng-model="research.searchdateto" placeholder='Avant' ng-change="search()">
+				</div>
+				<div class='col stage'>
+					<input type='text'      style='width:80%' class="stage" ng-model='research.searchstage'      ng-change="search()"  placeholder='Statut...'>
+					<input type='text'      style='width:80%'               ng-model='research.searchactivity'   ng-change="search()"  placeholder='Secteur...'>
+					<input type="checkbox"                                  ng-model="research.searchnoactivity" ng-change="search()" title='Non definie' data-toggle="tooltip">
+				</div>
+				<div class='col location'>
+					<input type='text'      style='width:100%' class="postalcode"  ng-model='research.searchpostalcode'  ng-change="search()" placeholder='Code postal...'>
+					<input type='text'      style='width:100%'                     ng-model='research.searchcity'        ng-change="search()"  placeholder='Ville...'>
+				</div>
+			</div>                    
+			<table class="table table-hover">
+				<!-- LISTE DES CLIENTS -->
+				<!-- item in (filteredItems = (items | orderBy:'order_prop' -->
+				<tr ng-repeat="client in clients"  ng-click='gotoClient(client._id)' class="opale-clickable-row" ng-class="{archive: !client.active}">
+					<td class='col name'>{{client.name}}</td>
+
+					<td class='col commercial' ng-show='client._user.firstname'>{{client._user.name}}</td>
+					<td class='col commercial' ng-show='!client._user.firstname' class='message-warning'>Aucun Commercial</td>
+
+					<td class='col lastcontact' ng-show="client.last_action_date">{{(client.last_action_date | date:'dd/MM/yyyy')}} / {{client.last_action_text}}</td>
+					<td class='col lastcontact' ng-show="!client.last_action_date">Aucune Action</td>
+					<td class='col stage'>{{client.stage}} <br/> {{client.activity || 'Aucune activite'}}</td>
+					<td class='col activity'>{{client.address.postal_code || ''}} <br/>{{client.address.city || ''}}</td>
+				</tr>
+			</table>
+			<h3 ng-show='clients.length == 0 && !current_user.admin'>Vous n'avez pas de clients pour le moment</h3>
+			<h3 ng-show='clients.length == 0 && current_user.admin'>Aucun clients</h3>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+	var options = {
+		animation: true
+		, placement: 'top'
+		, selector: false
+		, template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+		, trigger: 'hover focus'
+		, title: ''
+		, delay: 0
+		, html: false
+		, container: false
+	}
+	$('[data-toggle="tooltip"]').tooltip(options);	
+});
+</script>

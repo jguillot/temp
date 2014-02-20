@@ -1,0 +1,2 @@
+# MongoDB need to be started with the following parameters :
+sudo mongod --smallfiles --setParameter textSearchEnabled=true --config /usr/local/etc/mongod.conf --setParameter enableLocalhostAuthBypass=0 &

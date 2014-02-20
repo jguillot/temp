@@ -1,0 +1,173 @@
+<div class='client edit' ng-show='isloaded'>
+  <div class="panel">
+    <form name='editClientForm' class="form-horizontal form-header" role="form">
+      <div class="row padded">
+        <div class="col-md-12 col-xs-12 pull-left">
+          <div ng-show="editClientForm.name.$error.required" class="col-lg-12 error alert alert-warning text-center">Entreprise Requise</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-12">
+          <input ng-model='client.name' type="text" name='name' class="form-control" id="client_name" placeholder="Entreprise" title="Nom de l'entreprise" required>
+        </div>
+        <div class="col-lg-4 col-md-4 text-left">
+          <div switch data='client.active'></div>
+        </div>
+        <div class="col-lg-2 col-md-4 text-left">
+          <div switch data='client.stage' on='Client' off='Prospect' valon='Client' valoff='Prospect' class='long'></div>
+        </div>
+        <div class="col-lg-2 col-md-4 pull-right">
+          <button  ng-click='save()' ng-disabled="(!editClientForm.$valid)" type="button" class="btn btn-success pull-right">Sauver</button>
+        </div>
+      </div>
+      <br/>
+      <div class="row-">   
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 col-md-6 col-xs-6 text-left">
+          <select ng-model="client.activity" class="opale-text" style="width:200px;" title="Changer l'activité du client">
+            <option value="">-- Choisir une activite --</option>
+            <option value="Pharmacie">Pharmacie</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Institut">Institut</option>
+            <option value="Spa">Spa</option>
+            <option value="Boutique">Boutique</option>
+            <option value="Parfumerie">Parfumerie</option>
+            <option value="Groupement">Groupement</option>
+            <option value="Internet">Internet</option>
+            <option value="Esthéticienne">Esthéticienne</option>
+            <option value="Indépendant">Indépendant</option>
+            <option value="Duty Free">Duty Free</option>
+            <option value="Inflight">Inflight</option>
+            <option value="Croisiériste">Croisiériste</option>
+            <option value="Grand Magasin">Grand Magasin</option>
+            <option value="Distributeur">Distributeur</option>
+            <option value="Agent">Agent</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div class="col-lg-4 col-md-6 col-xs-6 text-left">
+          <select ng-model="client._user" ng-options='user as user.lastname for user in users' class="opale-text" style="width:200px;" title="Changer le commercial associé">
+            <option value="">Aucun commercial</option>
+          </select>
+        </div>
+      </div>
+      
+      <hr>
+
+      <div class="row"> 
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <p class="opale-big-text text-center">Informations</p>
+            <p class="opale-text"><span class="opale-lib">Fiche Créé le : </span>{{client.created_date | date:'dd/MM/yyyy'}}</p>
+            <p class="opale-text"><span class="opale-lib">Fiche modifiée le : </span>{{(client.update_date | date:'dd/MM/yyyy') || 'Jamais'}}</p>
+            <p class="opale-text"><span class="opale-lib">Echantillons expédiés le </span><input type="text" ui-date ng-model="client.product_send_date" title="Date d'expédition des produits"></p>
+            <p class="opale-text"><span class="opale-lib">Autres marques : </span> 
+              <div ng-init="options = ['Babor','Biotherm','BelleFontaine','Carita','Caudalie','Clarins','Decleor','Delarom','Darphin','Dr Brandt','Esthederm','Eisenberg','Filorga','Gatineau','Helena Rubinstein','Ivo Pintanguy','Kanebo','Lancaster','La prairie','La colline','La Mer','Margys','Matis','Mary Cohr','Nuxe','Payot','Patyka','Sisheido','Sothys','Thalgo','Valmont']">
+                <select drop-multiselect multiple="multiple" options="options" model="client.other_trademarks"></select>
+              </div>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-6 col-xs-12">
+          <p class="opale-big-text text-center">Adresse</p>
+          <p class="opale-text">
+           <input ng-model='client.address.address_line1' type="text" class="form-control c-field-sep" id="client_address_line1" placeholder="Adresse" title="Adresse ligne 1">
+           <input ng-model='client.address.address_line2' type="text" class="form-control c-field-sep" id="client_address_line2" placeholder="Adresse" title="Adresse ligne 2">
+           <input ng-model='client.address.postal_code' type="text" class="form-control c-field-sep" id="client_postal_code" placeholder="Code postal" title="Code postal">
+           <input ng-model='client.address.city' type="text" class="form-control c-field-sep" id="client_city" placeholder="Ville" title="Ville">
+           <input ng-model='client.address.country' type="text" class="form-control c-field-sep" id="client_country" placeholder="Pays" title="Pays">
+           <input ng-model='client.address.phone' type="text" class="form-control c-field-sep" id="client_phone" placeholder="Téléphone" title="Téléphone">
+           <input ng-model='client.address.mobile' type="text" class="form-control c-field-sep" id="client_mobile" placeholder="Mobile" title="Mobile">
+           <input ng-model='client.address.fax' type="text" class="form-control c-field-sep" id="client_fax" placeholder="Fax" title="Fax">
+           <input ng-model='client.address.email' type="text" class="form-control c-field-sep" id="client_email" placeholder="Email" title="Email">
+           <input ng-model='client.address.site' type="text" class="form-control c-field-sep" id="client_site" placeholder="Site" title="Site">
+           <input ng-model='client.siret' type="text" class="form-control c-field-sep" id="client_siret" placeholder="SIRET" title="SIRET">
+         </p> 
+       </div>
+       <div class="col-lg-4 col-md-6 col-xs-12">
+          <p class="opale-big-text text-center">Adresse de livraison</p>
+          <p class="opale-text">
+           <input ng-model='client.delivery_address.address_line1' type="text" class="form-control c-field-sep" id="client_delivery_address_line1" placeholder="Adresse" title="Adresse ligne 1">
+           <input ng-model='client.delivery_address.address_line2' type="text" class="form-control c-field-sep" id="client_delivery_address_line2" placeholder="Adresse" title="Adresse ligne 2">
+           <input ng-model='client.delivery_address.postal_code' type="text" class="form-control c-field-sep" id="client_delivery_postal_code" placeholder="Code postal" title="Code postal">
+           <input ng-model='client.delivery_address.city' type="text" class="form-control c-field-sep" id="client_delivery_city" placeholder="Ville" title="Ville">
+           <input ng-model='client.delivery_address.country' type="text" class="form-control c-field-sep" id="client_delivery_country" placeholder="Pays" title="Pays">
+           <input ng-model='client.delivery_address.phone' type="text" class="form-control c-field-sep" id="client_delivery_phone" placeholder="Téléphone" title="Téléphone">
+           <input ng-model='client.delivery_address.mobile' type="text" class="form-control c-field-sep" id="client_delivery_mobile" placeholder="Mobile" title="Mobile">
+           <input ng-model='client.delivery_address.fax' type="text" class="form-control c-field-sep" id="client_delivery_fax" placeholder="Fax" title="Fax">
+           <input ng-model='client.delivery_address.email' type="text" class="form-control c-field-sep" id="client_delivery_email" placeholder="Email" title="Email">
+           <button  ng-click='duplicate_address()' type="button" class="btn btn-sm btn-info pull-right">Dupliquer l'adresse</button>
+         </p> 
+       </div>
+       
+    </div>
+      
+    <div class="row">  
+     <div class="col-sm-4  col-xs-12">
+       <p class="opale-big-text">Informations sur les échantillons</p>
+       <textarea  ng-model='client.product_send_note' class="form-control" rows="5" style="width:100%;" placholder="Information sur les échantillons"></textarea>
+     </div>   
+      <div class="col-sm-8  col-xs-12">
+       <p class="opale-big-text">Notes</p>
+       <textarea  ng-model='client.description' class="form-control" rows="5" style="width:100%;" placholder="description"></textarea>
+     </div>
+   </div>
+      
+   <hr/>
+
+   <div class="row">
+    <div class="col-lg-4 text-left opale-text border-right">
+     <p class="opale-big-text">1er contact</p>
+     <p> 
+       <select ng-model="client.contacts[0].title" class="opale-text" style="width:80px;" title="Titre">
+        <option value="M">M</option>
+        <option value="Mme">Mme</option>
+        <option value="Mlle">Mlle</option>
+      </select>
+    </p>
+    <p><input ng-model='client.contacts[0].firstname' type="text" name='name' class="form-control" id="contact1_firstname" placeholder="Prénom"></p>
+    <p><input ng-model='client.contacts[0].name' type="text" name='name' class="form-control" id="contact1_name" placeholder="Nom"></p>
+    <p><input ng-model='client.contacts[0].position' type="text" name='name' class="form-control" id="contact1_post" placeholder="Poste"></p>
+    <p><input ng-model='client.contacts[0].phone' type="text" name='name' class="form-control" id="contact1_phone" placeholder="Telephone"></p>
+    <p><input ng-model='client.contacts[0].mobile' type="text" name='name' class="form-control" id="contact1_mobile" placeholder="Mobile"></p>
+    <p><input ng-model='client.contacts[0].fax' type="text" name='name' class="form-control" id="contact1_fax" placeholder="Fax"></p>
+    <p><input ng-model='client.contacts[0].email' type="text" name='name' class="form-control" id="contact1_email" placeholder="Email"></p>
+  </div>
+  <div class="col-lg-4 text-left opale-text">
+   <p class="opale-big-text">2eme contact</p>
+   <p> 
+     <select ng-model="client.contacts[1].title" class="opale-text" style="width:80px;" title="Titre">
+      <option value="M">M</option>
+      <option value="Mme">Mme</option>
+      <option value="Mlle">Mlle</option>
+    </select>
+    </p>
+    <p><input ng-model='client.contacts[1].firstname' type="text" name='name' class="form-control" id="contact1_firstname" placeholder="Prénom"></p>
+    <p><input ng-model='client.contacts[1].name' type="text" name='name' class="form-control" id="contact1_name" placeholder="Nom"></p>
+  <p><input ng-model='client.contacts[1].position' type="text" name='name' class="form-control" id="contact1_post" placeholder="Poste"></p>
+  <p><input ng-model='client.contacts[1].phone' type="text" name='name' class="form-control" id="contact1_phone" placeholder="Telephone"></p>
+  <p><input ng-model='client.contacts[1].mobile' type="text" name='name' class="form-control" id="contact1_mobile" placeholder="Mobile"></p>
+  <p><input ng-model='client.contacts[1].fax' type="text" name='name' class="form-control" id="contact1_fax" placeholder="Fax"></p>
+  <p><input ng-model='client.contacts[1].email' type="text" name='name' class="form-control" id="contact1_email" placeholder="Email"></p>
+</div>
+<div class="col-lg-4 text-left opale-text">
+ <p class="opale-big-text">3eme contact</p>
+ <p> 
+   <select ng-model="client.contacts[2].title" class="opale-text" style="width:80px;" title="Titre">
+    <option value="M">M</option>
+    <option value="Mme">Mme</option>
+    <option value="Mlle">Mlle</option>
+  </select>
+  </p>
+  <p><input ng-model='client.contacts[2].firstname' type="text" name='name' class="form-control" id="contact1_firstname" placeholder="Prénom"></p>
+  <p><input ng-model='client.contacts[2].name' type="text" name='name' class="form-control" id="contact1_name" placeholder="Nom"></p>
+  <p><input ng-model='client.contacts[2].position' type="text" name='name' class="form-control" id="contact1_post" placeholder="Poste"></p>
+  <p><input ng-model='client.contacts[2].phone' type="text" name='name' class="form-control" id="contact1_phone" placeholder="Telephone"></p>
+  <p><input ng-model='client.contacts[2].mobile' type="text" name='name' class="form-control" id="contact1_mobile" placeholder="Mobile"></p>
+  <p><input ng-model='client.contacts[2].fax' type="text" name='name' class="form-control" id="contact1_fax" placeholder="Fax"></p>
+  <p><input ng-model='client.contacts[2].email' type="text" name='name' class="form-control" id="contact1_email" placeholder="Email"></p>
+</div>
+</div>
+
+
+</form>
+</div>
+</div>

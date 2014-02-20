@@ -1,0 +1,83 @@
+
+
+<div class='user detail'>
+
+
+<div class="panel" style="height:180px;">
+    <div class="row">
+        <div class="img-user-avatar col-xs-4" style="background-image: url('/img/user_images/{{user.email}}.jpg');">
+        </div>
+        <div class="col-xs-4">
+            <p class="opale-title">{{user.firstname}} {{user.lastname}}<span ng-show='!user.active' class="text-danger"> / Archivé</span> </p>
+            <p><span class="opale-lib">Email : </span><span class="opale-text">{{user.email}}</span></p>
+            <p><span class="opale-lib">Mot de passe : </span><span class="opale-text">{{user.password}}</span></p>
+            <p><span class="opale-lib">Initiales : </span><span class="opale-text">{{user.initial}}</span></p>
+        </div>
+        <div id="user-head-datas col-xs-4">
+            <button ng-click='gotoEdit()' type="button" class="btn btn-primary pull-right" id="user-modify-button">Modifier</button><br/>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+   <div class="col-lg-3 col-xs-12">
+        <div class="panel">
+           <p class="opale-subtitle text-center ">Liste des clients ({{filtered.clients.length}})</p>
+           <h5 ng-show='clients.length == 0 && !user.admin'>Vous n'avez pas de clients pour le moment</h5>
+           <h5 ng-show='clients.length == 0 && user.admin'>Aucun client pour ce commercial</h5>
+           <div class="list-clients">
+            <table ng-show='clients.length > 0' class="table table-hover">
+                <tbody>
+                    <tr ng-repeat="client in filtered.clients = (clients | filter : {stage: 'Client'})" class="opale-clickable-row opale-text" ng-click='gotoClient(client._id)'>
+                        <td>{{client.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+       <div class="panel">
+           <p class="opale-subtitle text-center ">Liste des prospects ({{filtered.prospects.length}})</p>
+           <h5 ng-show='clients.length == 0 && !user.admin'>Vous n'avez pas de prospects pour le moment</h5>
+           <h5 ng-show='clients.length == 0 && user.admin'>Aucun prospect pour ce commercial</h5>
+           <div class="list-clients">
+            <table ng-show='clients.length > 0' class="table table-hover">
+                <tbody>
+                    <tr ng-repeat="client in filtered.prospects =  (clients | filter : {stage: 'Prospect'}) " class="opale-clickable-row opale-text" ng-click='gotoClient(client._id)'>
+                        <td>{{client.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="col-lg-9 col-xs-12">
+        <div class="panel">
+           <p class="opale-subtitle text-center">Liste des actions</p>
+           <h5 ng-show='actions.length == 0'>Aucune action pour ce commercial</h5>
+           <div ng-show='!actions.length == 0' class="list-actions">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width:150px;" class="text-left">Date</th>
+                            <th style="width:150px;" class="text-left">Client/Prospect</th>
+                            <th class="text-left">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat='action in actions | orderBy: "-actionDate"' ng-click='gotoClient(action.client_id)' class="opale-clickable-row opale-text">
+                            <td>{{action.actionDate | date:'dd/MM/yyyy'}}</td>
+                            <td>{{action.client_name}}</td>
+                            <td>{{action.comment}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
